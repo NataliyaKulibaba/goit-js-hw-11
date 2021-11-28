@@ -7,83 +7,39 @@ export default class NewsApiService {
     this.page = 1;
   }
   
-  // searchPictures() {
-  
-  //   const URL = `https://pixabay.com/api/?key=24469743-af1bc0463689ec6840cc2fde9&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
-    
-
-  //   return fetch(URL).then(r => r.json()).then((data) => {
-  //     this.incrementPage();
-
-  
-  //     return data;
-  //   })
-  // }
-  
+ 
   
   async searchPictures() {
-    const url = 'https://pixabay.com/api/';
+     
     const axiosOptions = {
         method: 'get',
-    
-        params: {            
+    url: 'https://pixabay.com/api/',
+      params: {
+          key: '24469743-af1bc0463689ec6840cc2fde9',
            q: `${this.searchQuery}`,
-        image_type: photo,
-        orientation: horizontal,
+        image_type: 'photo',
+        orientation: 'horizontal',
         safesearch: true,
         page: `${this.page}`,
         per_page: 40,
       },
-         headers: {
-        'Content-Type': 'application/json',
-        Autorization: '24469743-af1bc0463689ec6840cc2fde9'
-      }
+      
     };
 
       try {
-        
-        const response = await axios(url, { axiosOptions });
+        const response = await axios( axiosOptions );
         console.log(response)
         const data = response.data;
-console.log(data)
+        console.log(data)
+        this.incrementPage();
         return data
     }
     catch (error) {
       console.error(error)
-      Notify.warning("Sorry, there are no images matching your search query. Please try again.");
 }
   }
   
 
-
-
-    // return axios.get(`https://pixabay.com/api/?key=24469743-af1bc0463689ec6840cc2fde9&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`)
-      
-      
-
-    // return axios.get('https://pixabay.com/api/', {
-    //   param: {
-    //     q: `${this.searchQuery}`,
-    //     image_type: photo,
-    //     orientation: horizontal,
-    //     safesearch: true,
-    //     page: `${this.page}`,
-    //     per_page: 40,
-    //   },
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     Autorization: '24469743-af1bc0463689ec6840cc2fde9'
-    //   }
-    // })
-
-
-    // .then((data) => {
-    //   this.incrementPage();
-    //   console.log(data)
-   
-    //   return data;
-
-    // })
 
 
     incrementPage() {
@@ -100,3 +56,18 @@ console.log(data)
       this.searchQuery = newQuery;
     }
   }
+
+
+   // searchPictures() {
+  
+  //   const URL = `https://pixabay.com/api/?key=24469743-af1bc0463689ec6840cc2fde9&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
+    
+
+  //   return fetch(URL).then(r => r.json()).then((data) => {
+  //     this.incrementPage();
+
+  
+  //     return data;
+  //   })
+  // }
+  
