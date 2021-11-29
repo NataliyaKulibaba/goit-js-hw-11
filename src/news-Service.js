@@ -7,7 +7,6 @@ export default class NewsApiService {
     this.page = 1;
   }
   
- 
   
   async searchPictures() {
      
@@ -38,9 +37,6 @@ export default class NewsApiService {
       console.error(error)
 }
   }
-  
-
-
 
     incrementPage() {
       this.page += 1;
@@ -57,17 +53,3 @@ export default class NewsApiService {
     }
   }
 
-
-   // searchPictures() {
-  
-  //   const URL = `https://pixabay.com/api/?key=24469743-af1bc0463689ec6840cc2fde9&q=${this.searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${this.page}&per_page=40`;
-    
-
-  //   return fetch(URL).then(r => r.json()).then((data) => {
-  //     this.incrementPage();
-
-  
-  //     return data;
-  //   })
-  // }
-  

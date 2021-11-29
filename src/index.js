@@ -5,12 +5,9 @@ import NewsApiService from './news-Service';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import hitsTemplates from './templates/hitsTemplates.hbs';
 import LoadMoreBtn from './load-more';
-
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-
-const axios = require('axios').default;
 
 const newsApiService = new NewsApiService();
 
@@ -38,7 +35,7 @@ function searchElements(evn) {
   newsApiService.resetPage();
   
   if (newsApiService.query === '') {
-    console.log(newsApiService.query)
+  
     Notify.failure('Sorry, there are no images matching your search query. Please try again.')
     
     return
@@ -53,7 +50,6 @@ fetchHits()
 
 
 
-
 function fetchHits() {
   
   loadMoreBtn.disable();
@@ -62,9 +58,9 @@ function fetchHits() {
     appendHitsMarkup(data);
 
     loadMoreBtn.enable();
-    console.log(newsApiService.page)
+   
     if (newsApiService.page > 2 ) {
-      console.log(newsApiService.page)
+      
       const { height: cardHeight } = document
   .querySelector(".gallery")
   .firstElementChild.getBoundingClientRect();
@@ -81,7 +77,7 @@ window.scrollBy({
 
 
 function appendHitsMarkup(data) {
-  console.log(data)
+  
   imagesContainerEl.insertAdjacentHTML('beforeend', hitsTemplates(data.hits));
   
   const gallery = new SimpleLightbox('.gallery a',{close:true, closeText:'×',showCounter:true,preloading:true,enableKeyboard:true,docClose:true,disableScroll:true});
@@ -98,10 +94,9 @@ return Notify.warning("Sorry, there are no images matching your search query. Pl
   }
 
   if (newsApiService.page === 2) {
-    console.log(newsApiService.page)
 return Notify.info(`Hooray! We found ${data.totalHits} images`);
  }
-console.log(newsApiService.page)
+
 }
 
 
